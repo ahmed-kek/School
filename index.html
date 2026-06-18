@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>تسجيل الطلاب - مدارس الأرتقاء الأهلية</title>
+    <meta name="description" content="نموذج تسجيل الطلاب الجدد في مدارس الأرتقاء الأهلية للعام الدراسي 2026-2027">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* ===== إعادة الضبط والتصميم الأساسي ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: 'Cairo', sans-serif;
+            background: linear-gradient(145deg, #f0f3f8, #dce3ef);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 15px;
+            margin: 0;
+        }
+        .container {
+            background: rgba(255, 255, 255, .94);
+            backdrop-filter: blur(4px);
+            max-width: 880px;
+            width: 100%;
+            border-radius: 40px;
+            box-shadow: 0 25px 70px rgba(10, 30, 70, .12);
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, .6);
+            transition: all 0.3s ease;
+        }
+
+        /* ===== الهيدر مع الشعار ===== */
+        .header {
+            background: linear-gradient(145deg, #0a1e3d, #16325b);
+            padding: 25px 20px;
+            text-align: center;
+            border-bottom: 6px solid #c99a2b;
+        }
+        .header .logo-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .header .logo-img {
+            width: 95px;
+            height: 95px;
+            aspect-ratio: 1/1;
+            border-radius: 50%;
+            border: 4px solid #c99a2b;
+            background: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            box-shadow: 0 6px 20px rgba(201, 154, 43, .3);
+            flex-shrink: 0;
+        }
+        .header .logo-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        .header .title-group h1 {
+            color: #fff;
+            font-size: 28px;
+            font-weight: 800;
+            line-height: 1.3;
+        }
+        .header .title-group h1 small {
+            display: block;
+            font-size: 16px;
+            font-weight: 400;
+            color: #e2d9b6;
+            letter-spacing: 1.5px;
+        }
+        .header .year-badge {
+            display: inline-block;
+            background: #c99a2b;
+            color: #0a1e3d;
+            font-weight: 800;
+            padding: 2px 30px;
+            border-radius: 40px;
+            font-size: 18px;
+            margin-top: 8px;
+            box-shadow: 0 2px 15px rgba(201, 154, 43, .5);
+        }
+
+        /* ===== النموذج ===== */
+        .form-body {
+            padding: 25px 30px 15px;
+        }
+        .form-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 18px;
+        }
+        .form-group {
+            flex: 1 1 calc(50% - 18px);
+            min-width: 190px;
+            margin-bottom: 12px;
+        }
+        .form-group.full-width {
+            flex: 1 1 100%;
+        }
+
+        .section-title {
+            font-weight: 700;
+            color: #0a1e3d;
+            border-right: 4px solid #c99a2b;
+            padding-right: 14px;
+            margin: 12px 0 8px;
+            font-size: 17px;
+        }
+        .section-title i {
+            color: #c99a2b;
+            margin-left: 8px;
+        }
+
+        label {
+            display: block;
+            font-weight: 600;
+            font-size: 14px;
+            color: #1a202c;
+            margin-bottom: 5px;
+        }
+        label .required {
+            color: #e53e3e;
+            margin-right: 3px;
+        }
+        label i {
+            color: #c99a2b;
+            margin-left: 8px;
+            width: 20px;
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+            padding: 14px 18px;
+            border: 2px solid #e2e8f0;
+            border-radius: 16px;
+            font-size: 16px;
+            font-family: 'Cairo', sans-serif;
+            background: #f9fbfd;
+            transition: 0.25s ease;
+            color: #1a202c;
+            -webkit-appearance: none;
+        }
+        input:focus,
+        select:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #16325b;
+            box-shadow: 0 0 0 5px rgba(22, 50, 91, .08);
+            background: #fff;
+        }
+        textarea {
+            resize: vertical;
+            min-height: 70px;
+        }
+
+        .error-message {
+            color: #e53e3e;
+            font-size: 13px;
+            font-weight: 600;
+            margin-top: 5px;
+            display: none;
+            align-items: center;
+            gap: 6px;
+        }
+        .error-message.show {
+            display: flex;
+        }
+        input.error,
+        select.error {
+            border-color: #e53e3e;
+            background: #fff5f5;
+        }
+
+        /* ===== رفع المستندات ===== */
+        .upload-section {
+            background: #f8fafc;
+            border-radius: 24px;
+            padding: 22px 20px 12px;
+            margin: 10px 0 15px;
+            border: 2px dashed #d1d9e6;
+            transition: 0.3s ease;
+        }
+        .upload-section:hover {
+            border-color: #c99a2b;
+            background: #fcf9f0;
+        }
+        .upload-section .section-title {
+            border-right: none;
+            padding-right: 0;
+            margin: 0 0 15px;
+        }
+        .upload-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        .upload-item {
+            flex: 1 1 calc(33% - 15px);
+            min-width: 150px;
+            background: #fff;
+            border-radius: 18px;
+            padding: 12px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, .02);
+            border: 1px solid #edf2f7;
+            text-align: center;
+            transition: 0.2s ease;
+        }
+        .upload-item:hover {
+            border-color: #c99a2b;
+            box-shadow: 0 4px 15px rgba(201, 154, 43, .1);
+        }
+        .upload-item label {
+            font-size: 13px;
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 8px;
+            display: block;
+        }
+        .upload-item .file-input-wrapper {
+            position: relative;
+            width: 100%;
+        }
+        .upload-item .file-input-wrapper input[type="file"] {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            cursor: pointer;
+            top: 0;
+            right: 0;
+        }
+        .upload-item .upload-box {
+            border: 2px dashed #e2e8f0;
+            border-radius: 14px;
+            padding: 15px 5px;
+            background: #f7fafc;
+            transition: 0.25s ease;
+            min-height: 90px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        .upload-item .upload-box:hover {
+            border-color: #c99a2b;
+            background: #fffbee;
+        }
+        .upload-item .upload-box i {
+            font-size: 32px;
+            color: #a0aec0;
+            margin-bottom: 4px;
+        }
+        .upload-item .upload-box span {
+            font-size: 12px;
+            color: #718096;
+        }
+        .upload-item .preview-img {
+            width: 75px;
+            height: 75px;
+            border-radius: 12px;
+            object-fit: cover;
+            border: 2px solid #e2e8f0;
+            margin-top: 6px;
+            display: none;
+            background: #fff;
+        }
+        .upload-item .preview-img.show {
+            display: block;
+            margin: 6px auto 0;
+        }
+
+        /* ===== زر الإرسال ===== */
+        .btn-submit {
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(145deg, #0a1e3d, #16325b);
+            color: #fff;
+            font-size: 22px;
+            font-weight: 700;
+            border: none;
+            border-radius: 22px;
+            cursor: pointer;
+            margin-top: 18px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 14px;
+            font-family: 'Cairo', sans-serif;
+            transition: 0.2s ease;
+            box-shadow: 0 10px 25px rgba(10, 30, 61, .2);
+            letter-spacing: 0.5px;
+        }
+        .btn-submit:active {
+            transform: scale(0.97);
+        }
+        .btn-submit:hover {
+            background: linear-gradient(145deg, #16325b, #0a1e3d);
+            box-shadow: 0 12px 35px rgba(10, 30, 61, .3);
+        }
+        .btn-submit i {
+            font-size: 22px;
+        }
+        .btn-submit:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* ===== رسائل النجاح والإغلاق ===== */
+        .success-message {
+            display: none;
+            background: #f0fff4;
+            border: 2px solid #38a169;
+            border-radius: 24px;
+            padding: 30px 25px;
+            margin-top: 30px;
+            text-align: center;
+            color: #22543d;
+            animation: fadeUp 0.6s cubic-bezier(0.2, 0.9, 0.3, 1.1);
+        }
+        .success-message.show {
+            display: block;
+        }
+        .success-message i {
+            font-size: 55px;
+            color: #38a169;
+            margin-bottom: 10px;
+        }
+        .success-message h3 {
+            font-size: 24px;
+            font-weight: 700;
+            margin: 8px 0;
+        }
+
+        .closed-message {
+            display: none;
+            background: #fff5f5;
+            border: 2px solid #e53e3e;
+            border-radius: 24px;
+            padding: 50px 25px;
+            margin: 20px 0;
+            text-align: center;
+            color: #742a2a;
+            animation: fadeUp 0.6s ease;
+        }
+        .closed-message.show {
+            display: block;
+        }
+        .closed-message i {
+            font-size: 60px;
+            color: #e53e3e;
+            margin-bottom: 15px;
+        }
+        .closed-message h3 {
+            font-size: 26px;
+            font-weight: 800;
+            margin: 10px 0;
+        }
+        .closed-message p {
+            font-size: 16px;
+            opacity: 0.8;
+            line-height: 1.8;
+        }
+
+        @keyframes fadeUp {
+            0% {
+                opacity: 0;
+                transform: translateY(40px) scale(0.95);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        /* ===== الفوتر ===== */
+        .footer {
+            background: #0a1e3d;
+            padding: 25px 30px 20px;
+            color: #e2e8f0;
+            border-top: 6px solid #c99a2b;
+            margin-top: 10px;
+        }
+        .footer .footer-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 18px 30px;
+            justify-content: center;
+        }
+        .footer .footer-item {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            font-size: 15px;
+            flex: 1 1 200px;
+            min-width: 180px;
+        }
+        .footer .footer-item i {
+            color: #c99a2b;
+            font-size: 22px;
+            width: 30px;
+            text-align: center;
+        }
+        .footer .footer-item .phone-numbers {
+            direction: ltr;
+            font-family: 'Courier New', monospace;
+            background: rgba(255, 255, 255, .06);
+            padding: 4px 14px;
+            border-radius: 30px;
+            border: 1px solid rgba(255, 255, 255, .08);
+            font-size: 15px;
+            color: #fff;
+            display: inline-block;
+            margin-left: 6px;
+            letter-spacing: 0.5px;
+        }
+        .footer .footer-item .label {
+            color: #a0aec0;
+            font-weight: 400;
+            margin-left: 4px;
+        }
+        .footer .footer-copy {
+            text-align: center;
+            margin-top: 18px;
+            padding-top: 14px;
+            border-top: 1px solid rgba(255, 255, 255, .06);
+            font-size: 14px;
+            color: #a0aec0;
+        }
+        .footer .footer-copy strong {
+            color: #c99a2b;
+        }
+
+        /* ===== استجابة الجوال ===== */
+        @media (max-width: 650px) {
+            .form-group {
+                flex: 1 1 100%;
+                min-width: unset;
+            }
+            .header {
+                padding: 18px 15px;
+            }
+            .header .logo-img {
+                width: 75px;
+                height: 75px;
+            }
+            .header .title-group h1 {
+                font-size: 22px;
+            }
+            .header .title-group h1 small {
+                font-size: 14px;
+            }
+            .form-body {
+                padding: 15px;
+            }
+            .upload-item {
+                flex: 1 1 100%;
+            }
+            .footer {
+                padding: 20px 15px;
+            }
+            .footer .footer-item {
+                flex: 1 1 100%;
+            }
+            .btn-submit {
+                font-size: 19px;
+                padding: 16px;
+            }
+            .container {
+                border-radius: 28px;
+            }
+        }
+        @media (max-width: 400px) {
+            .header .logo-container {
+                gap: 10px;
+            }
+            .header .logo-img {
+                width: 65px;
+                height: 65px;
+            }
+            .header .title-group h1 {
+                font-size: 18px;
+            }
+            .btn-submit {
+                font-size: 17px;
+                padding: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <!-- ===== الهيدر مع الشعار ===== -->
+        <div class="header">
+            <div class="logo-container">
+                <div class="logo-img">
+                    <!-- ⚠️ تأكد من وجود ملف logo.png في نفس المجلد -->
+                    <img src="logo.jpg" alt="شعار مدارس الأرتقاء" loading="lazy" decoding="async">
+                </div>
+                <div class="title-group">
+                    <h1>مدارس الأرتقاء الأهلية <small>Al-Ertiqaa Private Schools</small></h1>
+                    <span class="year-badge">2025</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== النموذج ===== -->
+        <div class="form-body">
+
+            <!-- رسالة الإغلاق -->
+            <div class="closed-message" id="closedMessage">
+                <i class="fas fa-lock"></i>
+                <h3>⛔ التسجيل مغلق حالياً</h3>
+                <p>شكراً لتواصلكم مع مدارس الأرتقاء الأهلية.<br>فترة التسجيل للعام الدراسي الحالي قد انتهت.<br>سيتم الإعلان عن مواعيد التسجيل للعام القادم قريباً.</p>
+            </div>
+
+            <!-- محتوى النموذج -->
+            <div class="form-content" id="formContent">
+                <form id="registrationForm" novalidate>
+
+                    <!-- القسم الأول: بيانات الطالب -->
+                    <div class="section-title"><i class="fas fa-user-graduate"></i> بيانات الطالب</div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label><i class="fas fa-user"></i> الاسم الكامل <span class="required">*</span></label>
+                            <input type="text" id="fullName" placeholder="مثال: أحمد محمد علي" required>
+                            <div class="error-message" id="fullNameError"><i class="fas fa-exclamation-circle"></i> مطلوب</div>
+                        </div>
+                        <div class="form-group">
+                            <label><i class="fas fa-calendar-alt"></i> تاريخ الميلاد <span class="required">*</span></label>
+                            <input type="date" id="dob" required>
+                            <div class="error-message" id="dobError"><i class="fas fa-exclamation-circle"></i> مطلوب</div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label><i class="fas fa-venus-mars"></i> الجنس <span class="required">*</span></label>
+                            <select id="gender" required>
+                                <option value="">-- اختر --</option>
+                                <option value="ذكر">ذكر</option>
+                                <option value="أنثى">أنثى</option>
+                            </select>
+                            <div class="error-message" id="genderError"><i class="fas fa-exclamation-circle"></i> مطلوب</div>
+                        </div>
+                        <div class="form-group">
+                            <label><i class="fas fa-school"></i> الصف الدراسي <span class="required">*</span></label>
+                            <select id="grade" required>
+                                <option value="">-- اختر --</option>
+                                <option>الأول ابتدائي</option><option>الثاني ابتدائي</option>
+                                <option>الثالث ابتدائي</option><option>الرابع ابتدائي</option>
+                                <option>الخامس ابتدائي</option><option>السادس ابتدائي</option>
+                                <option>الأول متوسط</option><option>الثاني متوسط</option><option>الثالث متوسط</option>
+                            </select>
+                            <div class="error-message" id="gradeError"><i class="fas fa-exclamation-circle"></i> مطلوب</div>
+                        </div>
+                    </div>
+
+                    <!-- القسم الثاني: بيانات ولي الأمر -->
+                    <div class="section-title"><i class="fas fa-user-tie"></i> بيانات ولي الأمر</div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label><i class="fas fa-user-tie"></i> اسم ولي الأمر <span class="required">*</span></label>
+                            <input type="text" id="parentName" placeholder="اسم الأب أو الوصي" required>
+                            <div class="error-message" id="parentNameError"><i class="fas fa-exclamation-circle"></i> مطلوب</div>
+                        </div>
+                        <div class="form-group">
+                            <label><i class="fas fa-briefcase"></i> جهة العمل / الوظيفة</label>
+                            <input type="text" id="parentJob" placeholder="مثال: موظف حكومي - وزارة التربية">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label><i class="fas fa-phone-alt"></i> رقم الجوال <span class="required">*</span></label>
+                            <input type="tel" id="phone" placeholder="مثال: 0501234567" required>
+                            <div class="error-message" id="phoneError"><i class="fas fa-exclamation-circle"></i> أدخل 10-15 رقم</div>
+                        </div>
+                        <div class="form-group">
+                            <label><i class="fas fa-home"></i> العنوان (المنزل)</label>
+                            <input type="text" id="address" placeholder="الحي / المدينة">
+                        </div>
+                    </div>
+
+                    <!-- القسم الثالث: المستندات والملاحظات -->
+                    <div class="section-title"><i class="fas fa-paperclip"></i> المستندات والملاحظات</div>
+                    <div class="upload-section">
+                        <div class="upload-grid">
+                            <div class="upload-item">
+                                <label>الصورة الشخصية <span style="color:#c99a2b;">(خلفية بيضاء)</span></label>
+                                <div class="file-input-wrapper">
+                                    <div class="upload-box" id="box-studentPhoto">
+                                        <i class="fas fa-camera"></i>
+                                        <span>اختر الصورة</span>
+                                        <img class="preview-img" id="preview-studentPhoto" src="#" alt="معاينة">
+                                    </div>
+                                    <input type="file" id="studentPhoto" accept="image/*" capture="environment">
+                                </div>
+                            </div>
+                            <div class="upload-item">
+                                <label>بطاقة الطالب الوطنية</label>
+                                <div class="file-input-wrapper">
+                                    <div class="upload-box" id="box-studentId">
+                                        <i class="fas fa-id-card"></i>
+                                        <span>اختر الصورة</span>
+                                        <img class="preview-img" id="preview-studentId" src="#" alt="معاينة">
+                                    </div>
+                                    <input type="file" id="studentIdDoc" accept="image/*" capture="environment">
+                                </div>
+                            </div>
+                            <div class="upload-item">
+                                <label>بطاقة ولي الأمر (الأب)</label>
+                                <div class="file-input-wrapper">
+                                    <div class="upload-box" id="box-fatherId">
+                                        <i class="fas fa-id-card"></i>
+                                        <span>اختر الصورة</span>
+                                        <img class="preview-img" id="preview-fatherId" src="#" alt="معاينة">
+                                    </div>
+                                    <input type="file" id="fatherId" accept="image/*" capture="environment">
+                                </div>
+                            </div>
+                            <div class="upload-item">
+                                <label>بطاقة الأم (إن وجدت)</label>
+                                <div class="file-input-wrapper">
+                                    <div class="upload-box" id="box-motherId">
+                                        <i class="fas fa-id-card"></i>
+                                        <span>اختر الصورة</span>
+                                        <img class="preview-img" id="preview-motherId" src="#" alt="معاينة">
+                                    </div>
+                                    <input type="file" id="motherId" accept="image/*" capture="environment">
+                                </div>
+                            </div>
+                            <div class="upload-item">
+                                <label>بطاقة السكن / إيجار</label>
+                                <div class="file-input-wrapper">
+                                    <div class="upload-box" id="box-rentCard">
+                                        <i class="fas fa-file-alt"></i>
+                                        <span>اختر الصورة</span>
+                                        <img class="preview-img" id="preview-rentCard" src="#" alt="معاينة">
+                                    </div>
+                                    <input type="file" id="rentCard" accept="image/*" capture="environment">
+                                </div>
+                            </div>
+                        </div>
+                        <p style="font-size:12px;color:#718096;margin-top:12px;text-align:center;">
+                            <i class="fas fa-info-circle"></i> يُفضل رفع الصور بصيغة (JPG أو PNG) وبحجم مناسب
+                        </p>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group full-width">
+                            <label><i class="fas fa-sticky-note"></i> ملاحظات إضافية (حالة صحية، احتياجات خاصة، ...)</label>
+                            <textarea id="notes" placeholder="أي معلومات أخرى تود إضافتها..."></textarea>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn-submit" id="submitBtn">
+                        <i class="fas fa-paper-plane"></i> تسجيل الطالب
+                    </button>
+                </form>
+
+                <!-- رسالة النجاح -->
+                <div class="success-message" id="successMessage">
+                    <i class="fas fa-check-circle"></i>
+                    <h3>✅ تم التسجيل بنجاح!</h3>
+                    <p>شكراً لتسجيلكم في مدارس الأرتقاء الأهلية. سيتم التواصل معكم قريباً.</p>
+                    <p style="font-size:13px;background:#e6fffa;padding:8px;border-radius:12px;margin-top:12px;">
+                        <i class="fas fa-fire"></i> تم حفظ البيانات في قاعدة Firebase
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== الفوتر ===== -->
+        <div class="footer">
+            <div class="footer-grid">
+                <div class="footer-item">
+                    <i class="fas fa-phone-alt"></i>
+                    <span>
+                        <span class="label">هاتف:</span>
+                        <span class="phone-numbers">07850009133</span>
+                        <span class="phone-numbers">07750009133</span>
+                    </span>
+                </div>
+                <div class="footer-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>
+                        <span class="label">العنوان:</span> النجف الأشرف، شارع جامعة الكفيل، مجمع الاميرات السكني الأول، مقابل مجمع السلام السكني
+                    </span>
+                </div>
+                <div class="footer-item">
+                    <i class="fas fa-school"></i>
+                    <span><span class="label">المراحل:</span> ابتدائي - متوسط (بنين وبنات)</span>
+                </div>
+            </div>
+            <div class="footer-copy">
+                <i class="fas fa-crown" style="color:#c99a2b;"></i>
+                <strong>مدارس الأرتقاء الأهلية</strong> &copy; 2026 - جميع الحقوق محفوظة
+            </div>
+        </div>
+    </div>
+
+    <!-- ========================================= -->
+    <!-- ✅ استيراد Firebase باستخدام Import Map -->
+    <!-- ========================================= -->
+    <script type="importmap">
+        {
+            "imports": {
+                "firebase/app": "https://www.gstatic.com/firebasejs/12.15.0/firebase-app.js",
+                "firebase/firestore": "https://www.gstatic.com/firebasejs/12.15.0/firebase-firestore.js"
+            }
+        }
+    </script>
+
+    <script type="module">
+        // =============================================================
+        // 1. بيانات التهيئة (ضع بياناتك هنا)
+        // =============================================================
+        import { initializeApp } from "firebase/app";
+        import { getFirestore, collection, addDoc, setDoc, doc, onSnapshot } from "firebase/firestore";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyDmCE0r4TPbj0CmxtSYp9xHb0Oa1A3dHaA",
+            authDomain: "school-beee2.firebaseapp.com",
+            projectId: "school-beee2",
+            storageBucket: "school-beee2.firebasestorage.app",
+            messagingSenderId: "626037220049",
+            appId: "1:626037220049:web:423036f420bd9b98d09bf0"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+        console.log("✅ Firebase متصل بنجاح!");
+
+        // =============================================================
+        // 2. عناصر الصفحة والمنطق
+        // =============================================================
+        const formContent = document.getElementById('formContent');
+        const closedMsg = document.getElementById('closedMessage');
+        const form = document.getElementById('registrationForm');
+        const successMsg = document.getElementById('successMessage');
+        const submitBtn = document.getElementById('submitBtn');
+
+        // --- التحقق من حالة التسجيل (الاستماع الفوري) ---
+        const configRef = doc(db, "config", "settings");
+        onSnapshot(configRef, (docSnap) => {
+            if (docSnap.exists()) {
+                const data = docSnap.data();
+                const isOpen = data.registrationOpen !== undefined ? data.registrationOpen : true;
+                updateUIBasedOnStatus(isOpen);
+            } else {
+                // إنشاء الإعدادات افتراضياً
+                setDoc(configRef, { registrationOpen: true })
+                    .then(() => console.log("✅ تم إنشاء إعدادات التسجيل"))
+                    .catch(err => console.error("خطأ في الإنشاء:", err));
+                updateUIBasedOnStatus(true);
+            }
+        }, (error) => {
+            console.error("❌ خطأ في الاستماع للإعدادات:", error);
+            updateUIBasedOnStatus(true); // احتياطي: فتح التسجيل
+        });
+
+        function updateUIBasedOnStatus(isOpen) {
+            if (isOpen) {
+                closedMsg.classList.remove('show');
+                formContent.classList.remove('disabled');
+            } else {
+                closedMsg.classList.add('show');
+                formContent.classList.add('disabled');
+            }
+        }
+
+        // --- معاينة الصور ---
+        const mappings = [
+            { id: 'studentPhoto', previewId: 'preview-studentPhoto' },
+            { id: 'studentIdDoc', previewId: 'preview-studentId' },
+            { id: 'fatherId', previewId: 'preview-fatherId' },
+            { id: 'motherId', previewId: 'preview-motherId' },
+            { id: 'rentCard', previewId: 'preview-rentCard' }
+        ];
+        mappings.forEach(item => {
+            const input = document.getElementById(item.id);
+            const preview = document.getElementById(item.previewId);
+            if (input && preview) {
+                input.addEventListener('change', function() {
+                    const file = this.files[0];
+                    if (file) {
+                        const reader = new FileReader();
+                        reader.onload = function(ev) {
+                            preview.src = ev.target.result;
+                            preview.classList.add('show');
+                        };
+                        reader.readAsDataURL(file);
+                    } else {
+                        preview.classList.remove('show');
+                        preview.src = '#';
+                    }
+                });
+            }
+        });
+
+        // --- التحقق من النموذج ---
+        function showError(id, errId) {
+            const input = document.getElementById(id);
+            const err = document.getElementById(errId);
+            if (!input.value.trim() || !input.validity.valid) {
+                input.classList.add('error');
+                err.classList.add('show');
+                return false;
+            } else {
+                input.classList.remove('error');
+                err.classList.remove('show');
+                return true;
+            }
+        }
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            // التحقق من حالة التسجيل
+            const isOpen = !closedMsg.classList.contains('show');
+            if (!isOpen) {
+                alert('⛔ عذراً، التسجيل مغلق حالياً.');
+                return;
+            }
+
+            let isValid = true;
+            if (!showError('fullName', 'fullNameError')) isValid = false;
+            if (!showError('dob', 'dobError')) isValid = false;
+            if (!showError('gender', 'genderError')) isValid = false;
+            if (!showError('grade', 'gradeError')) isValid = false;
+            if (!showError('parentName', 'parentNameError')) isValid = false;
+
+            const phone = document.getElementById('phone');
+            if (!/^[0-9]{10,15}$/.test(phone.value.trim())) {
+                phone.classList.add('error');
+                document.getElementById('phoneError').classList.add('show');
+                isValid = false;
+            } else {
+                phone.classList.remove('error');
+                document.getElementById('phoneError').classList.remove('show');
+            }
+
+            if (!isValid) return;
+
+            // --- إرسال البيانات ---
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> جاري الحفظ...';
+
+            const studentData = {
+                fullName: document.getElementById('fullName').value.trim(),
+                dob: document.getElementById('dob').value,
+                gender: document.getElementById('gender').value,
+                grade: document.getElementById('grade').value,
+                parentName: document.getElementById('parentName').value.trim(),
+                parentJob: document.getElementById('parentJob').value.trim() || 'غير مذكور',
+                phone: document.getElementById('phone').value.trim(),
+                address: document.getElementById('address').value.trim() || 'غير مذكور',
+                notes: document.getElementById('notes').value.trim() || 'لا يوجد',
+                registeredAt: new Date().toISOString()
+            };
+
+            addDoc(collection(db, "students"), studentData)
+                .then(() => {
+                    successMsg.classList.add('show');
+                    form.reset();
+                    document.querySelectorAll('.preview-img').forEach(img => {
+                        img.classList.remove('show');
+                        img.src = '#';
+                    });
+                    successMsg.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    setTimeout(() => {
+                        submitBtn.disabled = false;
+                        submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> تسجيل الطالب';
+                    }, 3000);
+                    setTimeout(() => successMsg.classList.remove('show'), 6000);
+                })
+                .catch((error) => {
+                    alert('❌ حدث خطأ في حفظ البيانات: ' + error.message);
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> تسجيل الطالب';
+                    console.error("❌ خطأ Firebase:", error);
+                });
+        });
+
+        // --- إزالة حالة الخطأ أثناء الكتابة ---
+        document.querySelectorAll('input, select').forEach(el => {
+            el.addEventListener('input', function() {
+                this.classList.remove('error');
+                const err = this.closest('.form-group').querySelector('.error-message');
+                if (err) err.classList.remove('show');
+            });
+        });
+
+        console.log("🚀 نموذج التسجيل (النسخة المحسنة) جاهز!");
+    </script>
+</body>
+</html>
